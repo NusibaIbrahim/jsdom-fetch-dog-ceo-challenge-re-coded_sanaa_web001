@@ -29,3 +29,21 @@ function createDogList(dogBreedArray){
   })
   return dogLiStringArray.json('')
 }
+
+document.addEventListener('DOMContentLoded', () => {
+  let allBreeds =[];
+  const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
+  const breedUrl = 'https://dog.ceo/api/breeds/list/all'
+  const dogImgContainer = document.getElementById("dog-image-container")
+  const dogBreedUl = document.getElementById("dog-breeds")
+  const breedDropDown = document.getElementById("breed-dropdown")
+  
+  dogBreedUl.addEventListener('click', function(event) {
+    event.target.style.color = "red"
+  })
+  breedDropDown.addEventListener('change', (event) => {
+    const letter = event.target.value;
+    const filteredBreeds = allBreeds.filter((breed) => breed.startWith(letter))
+    dogBreedUl.innerHTML = createDogList(filteredBreeds)
+  })
+})
